@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from "react";
+import "./App.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Container,Button,Form,FormControl,Col,Row} from "react-bootstrap";
-import "./App.css";
-import Recipe from "./Recipe.js";
+import {Container, Button, Form, FormControl, Navbar, Nav} from "react-bootstrap";
+import Recipe from "./components/Recipe.js";
+
 
 export default function App(){
     const APP_ID = "f88c91e6";
@@ -31,11 +32,25 @@ export default function App(){
 
     return(
         <div className="App">
-            <Container className="text-center">
-                <Form  inline className="d-inline-block " onSubmit={getSearch}>
-                    <FormControl type="text"  value={search} onChange={updateSearch}/>
-                    <Button variant="primary" type="submit">Search</Button>
-                </Form>
+            <Container className="text-center ">
+                <Navbar bg="dark" variant="dark" className="navColor">
+                    <Navbar.Brand href="/">Best Cook</Navbar.Brand>
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/">Home</Nav.Link>
+                    </Nav>
+                    <Form inline>
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2"
+                                     value={search}
+                                     onChange={updateSearch}/>
+                        <Button variant="outline-info" type="submit"
+                                onClick={getSearch}
+                        >Search</Button>
+                    </Form>
+                </Navbar>
+                {/*<Form  inline className="d-inline-block " onSubmit={getSearch}>*/}
+                {/*    <FormControl type="text"  value={search} onChange={updateSearch}/>*/}
+                {/*    <Button variant="primary" type="submit" onSubmit={getSearch} >Search</Button>*/}
+                {/*</Form>*/}
                 {recipes.map(recipe =>(
                 <Recipe
                     key={recipe.recipe.label}
